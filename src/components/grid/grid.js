@@ -9,7 +9,7 @@ function Grid() {
       columnCount={8}
       columnWidth={150}
       height={250}
-      rowCount={1000}
+      rowCount={1001}
       rowHeight={35}
       width={700}
     >

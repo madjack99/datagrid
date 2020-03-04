@@ -5,8 +5,15 @@ import getFakeData from '../../services/data';
 const data = getFakeData();
 
 function Cell({ columnIndex, rowIndex, style }) {
-  const user = Object.values(data[rowIndex]);
-  const info = user[columnIndex];
+  let info;
+  if (rowIndex === 0) {
+    const tableHeaders = Object.keys(data[rowIndex]);
+    info = tableHeaders[columnIndex];
+  } else {
+    const user = Object.values(data[rowIndex]);
+    info = user[columnIndex];
+  }
+
   return <div style={style}>{info}</div>;
 }
 

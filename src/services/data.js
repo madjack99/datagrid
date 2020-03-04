@@ -11,8 +11,8 @@ const getAge = () => {
 const getFakeData = () => {
   faker.seed(1);
   const fakeData = [];
-  for (let i = 0; i < 1000; i++) {
-    const id = i + 1;
+  for (let i = 0; i < 1001; i++) {
+    const id = i;
     const name = faker.name.findName();
     const age = getAge();
     const job = faker.name.jobTitle();
