@@ -1,9 +1,13 @@
 .row {
   border-bottom: 1px solid black;
+  padding: 10px 0 0 10px;
 }
 
 .t-head {
   background: navajowhite;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .odd {
