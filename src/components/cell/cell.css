@@ -1,6 +1,9 @@
 .row {
   border-bottom: 1px solid black;
   padding: 10px 0 0 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .t-head {
