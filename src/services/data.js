@@ -12,6 +12,7 @@ const getFakeData = () => {
   faker.seed(1);
   const fakeData = [];
   for (let i = 0; i < 1000; i++) {
+    const id = i + 1;
     const name = faker.name.findName();
     const age = getAge();
     const job = faker.name.jobTitle();
@@ -20,7 +21,7 @@ const getFakeData = () => {
     const state = faker.address.stateAbbr();
     const company = faker.company.companyName();
 
-    fakeData.push({ name, age, married, state, company, job, salary });
+    fakeData.push({ id, name, age, married, state, company, job, salary });
   }
 
   return fakeData;

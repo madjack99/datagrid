@@ -6,7 +6,7 @@ import Cell from '../cell';
 function Grid() {
   return (
     <FixedSizeGrid
-      columnCount={7}
+      columnCount={8}
       columnWidth={150}
       height={250}
       rowCount={1000}
