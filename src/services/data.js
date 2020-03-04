@@ -8,27 +8,19 @@ const getAge = () => {
   return age;
 };
 
-const getColors = () => {
-  const colors = [];
-  for (let i = 0; i < 3; i++) {
-    colors.push(faker.commerce.color());
-  }
-  return colors.join(', ');
-};
-
 const getFakeData = () => {
   faker.seed(1);
   const fakeData = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 1000; i++) {
     const name = faker.name.findName();
     const age = getAge();
     const job = faker.name.jobTitle();
-    const married = faker.random.boolean();
+    const married = faker.random.boolean() ? 'Yes' : 'No';
     const salary = faker.random.number();
-    const colors = getColors();
-    const phone = faker.phone.phoneNumber();
+    const state = faker.address.stateAbbr();
+    const company = faker.company.companyName();
 
-    fakeData.push({ name, age, job, married, salary, colors, phone });
+    fakeData.push({ name, age, married, state, company, job, salary });
   }
 
   return fakeData;

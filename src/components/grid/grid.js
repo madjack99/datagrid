@@ -7,11 +7,11 @@ function Grid() {
   return (
     <FixedSizeGrid
       columnCount={7}
-      columnWidth={100}
-      height={150}
-      rowCount={10}
+      columnWidth={150}
+      height={250}
+      rowCount={1000}
       rowHeight={35}
-      width={300}
+      width={700}
     >
       {Cell}
     </FixedSizeGrid>
