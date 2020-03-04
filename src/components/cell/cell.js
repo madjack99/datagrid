@@ -2,7 +2,17 @@ import React from 'react';
 
 import getFakeData from '../../services/data';
 
+import './cell.css';
+
 const data = getFakeData();
+
+const calculateClass = rowIndex => {
+  if (rowIndex === 0) {
+    return 't-head row';
+  }
+
+  return rowIndex % 2 === 0 ? 'even row' : 'odd row';
+};
 
 function Cell({ columnIndex, rowIndex, style }) {
   let info;
@@ -14,7 +24,13 @@ function Cell({ columnIndex, rowIndex, style }) {
     info = user[columnIndex];
   }
 
-  return <div style={style}>{info}</div>;
+  const clazz = calculateClass(rowIndex);
+
+  return (
+    <div className={clazz} style={style}>
+      {info}
+    </div>
+  );
 }
 
 export default Cell;
