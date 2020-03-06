@@ -39,34 +39,74 @@ const innerElementType = forwardRef(({ children, ...rest }, ref) => (
   </StickyGridContext.Consumer>
 ));
 
-const StickyGrid = ({ children, stickyIndices, columnCount, ...rest }) => (
-  <StickyGridContext.Provider
-    value={{ ItemRenderer: children, stickyIndices, columnCount }}
-  >
-    <FixedSizeGrid
-      itemData={{ ItemRenderer: children, stickyIndices }}
-      columnCount={columnCount}
-      {...rest}
-    >
-      {ItemWrapper}
-    </FixedSizeGrid>
-  </StickyGridContext.Provider>
-);
+class StickyGrid extends React.Component {
+  constructor(props) {
+    super(props);
+    this.fixedGrid = React.createRef(null);
+  }
+  render() {
+    const { children, stickyIndices, columnCount, ...rest } = this.props;
+    console.log(this.fixedGrid);
+    return (
+      <StickyGridContext.Provider
+        value={{ ItemRenderer: children, stickyIndices, columnCount }}
+      >
+        <FixedSizeGrid
+          ref={this.fixedGrid}
+          itemData={{ ItemRenderer: children, stickyIndices }}
+          columnCount={columnCount}
+          {...rest}
+        >
+          {ItemWrapper}
+        </FixedSizeGrid>
+      </StickyGridContext.Provider>
+    );
+  }
+}
 
 const Grid = () => {
+  const staticGrid = React.useRef(null);
+  const onScroll = React.useCallback(
+    ({ scrollTop, scrollUpdateWasRequested }) => {
+      if (!scrollUpdateWasRequested) {
+        staticGrid.current.fixedGrid.current.scrollTo({
+          scrollLeft: 0,
+          scrollTop,
+        });
+      }
+    }
+  );
   return (
-    <StickyGrid
-      columnCount={8}
-      columnWidth={150}
-      rowCount={21}
-      rowHeight={50}
-      height={250}
-      width={1217}
-      stickyIndices={[0]}
-      innerElementType={innerElementType}
-    >
-      {Cell}
-    </StickyGrid>
+    <div className='two-grids-wrapper'>
+      <StickyGrid
+        ref={staticGrid}
+        style={{ overflowY: 'hidden' }}
+        className='fixed-column'
+        columnCount={1}
+        columnWidth={50}
+        rowCount={21}
+        rowHeight={50}
+        height={250}
+        width={150}
+        stickyIndices={[0]}
+        innerElementType={innerElementType}
+      >
+        {Cell}
+      </StickyGrid>
+      <StickyGrid
+        onScroll={onScroll}
+        columnCount={8}
+        columnWidth={150}
+        rowCount={21}
+        rowHeight={50}
+        height={250}
+        width={1250}
+        stickyIndices={[0]}
+        innerElementType={innerElementType}
+      >
+        {Cell}
+      </StickyGrid>
+    </div>
   );
 };
 
