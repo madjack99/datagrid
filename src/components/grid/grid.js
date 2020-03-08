@@ -75,7 +75,8 @@ const Grid = ({ personList }) => {
           scrollTop,
         });
       }
-    }
+    },
+    []
   );
   return (
     <div className='two-grids-wrapper'>
