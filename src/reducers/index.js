@@ -7,9 +7,9 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_INITIAL_LIST':
-      return initialState;
+      return state;
     default:
-      return initialState;
+      return state;
   }
 };
 
