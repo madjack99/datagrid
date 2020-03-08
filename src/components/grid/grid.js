@@ -1,5 +1,6 @@
 import React, { createContext, forwardRef } from 'react';
 import { FixedSizeGrid } from 'react-window';
+import { connect } from 'react-redux';
 
 import Cell from '../cell';
 import StickyCell from '../sticky-cell';
@@ -64,7 +65,7 @@ class StickyGrid extends React.Component {
   }
 }
 
-const Grid = () => {
+const Grid = ({ personList }) => {
   const staticGrid = React.useRef(null);
   const onScroll = React.useCallback(
     ({ scrollTop, scrollUpdateWasRequested }) => {
@@ -84,7 +85,7 @@ const Grid = () => {
         className='fixed-column'
         columnCount={1}
         columnWidth={50}
-        rowCount={21}
+        rowCount={personList.length}
         rowHeight={50}
         height={250}
         width={150}
@@ -97,7 +98,7 @@ const Grid = () => {
         onScroll={onScroll}
         columnCount={8}
         columnWidth={150}
-        rowCount={21}
+        rowCount={personList.length}
         rowHeight={50}
         height={250}
         width={1250}
@@ -110,4 +111,8 @@ const Grid = () => {
   );
 };
 
-export default Grid;
+const mapStateToProps = ({ personList }) => ({
+  personList,
+});
+
+export default connect(mapStateToProps)(Grid);
