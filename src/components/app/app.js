@@ -1,10 +1,15 @@
 import React from 'react';
-import getFakeData from '../../services/data';
+import { Provider } from 'react-redux';
+
 import Grid from '../grid';
+import store from '../../store';
 
 function App() {
-  console.log(getFakeData());
-  return <Grid />;
+  return (
+    <Provider store={store}>
+      <Grid />
+    </Provider>
+  );
 }
 
 export default App;

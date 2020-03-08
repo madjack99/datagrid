@@ -1,7 +1,8 @@
 import React, { createContext, forwardRef } from 'react';
 import { FixedSizeGrid } from 'react-window';
 
-import Cell, { StickyCell } from '../cell';
+import Cell from '../cell';
+import StickyCell from '../sticky-cell';
 
 import './grid.css';
 
@@ -46,7 +47,6 @@ class StickyGrid extends React.Component {
   }
   render() {
     const { children, stickyIndices, columnCount, ...rest } = this.props;
-    console.log(this.fixedGrid);
     return (
       <StickyGridContext.Provider
         value={{ ItemRenderer: children, stickyIndices, columnCount }}

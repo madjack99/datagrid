@@ -1,17 +1,14 @@
 import React from 'react';
-
-import getFakeData from '../../services/data';
+import { connect } from 'react-redux';
 
 import './cell.css';
-
-const data = getFakeData();
 
 const calculateClass = rowIndex => {
   return rowIndex % 2 === 0 ? 'even row' : 'odd row';
 };
 
-function Cell({ columnIndex, rowIndex, style }) {
-  const user = Object.values(data[rowIndex]);
+function Cell({ columnIndex, rowIndex, style, personList }) {
+  const user = Object.values(personList[rowIndex]);
   const info = user[columnIndex];
 
   const clazz = calculateClass(rowIndex);
@@ -23,15 +20,8 @@ function Cell({ columnIndex, rowIndex, style }) {
   );
 }
 
-const StickyCell = ({ rowIndex, columnIndex, style }) => {
-  const tableHeaders = Object.keys(data[rowIndex]);
-  const info = tableHeaders[columnIndex];
-  return (
-    <div className='sticky-cell row t-head' style={style}>
-      {info}
-    </div>
-  );
-};
+const mapStateToProps = ({ personList }) => ({
+  personList,
+});
 
-export { StickyCell };
-export default Cell;
+export default connect(mapStateToProps)(Cell);
