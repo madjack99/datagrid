@@ -15,7 +15,7 @@ function Cell({ columnIndex, rowIndex, style, personList }) {
 
   return (
     <div className={clazz} style={style}>
-      {info}
+      {columnIndex === 0 ? rowIndex : info}
     </div>
   );
 }

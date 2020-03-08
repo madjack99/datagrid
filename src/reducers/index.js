@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_INITIAL_LIST':
       return {
-        personList: initialState.personList,
+        personList: [...initialState.personList],
       };
     case 'SORT_BY':
       return {

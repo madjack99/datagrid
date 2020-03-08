@@ -66,7 +66,6 @@ class StickyGrid extends React.Component {
 }
 
 const Grid = ({ personList }) => {
-  console.log(personList);
   const staticGrid = React.useRef(null);
   const onScroll = React.useCallback(
     ({ scrollTop, scrollUpdateWasRequested }) => {
