@@ -8,7 +8,6 @@ const calculateClass = rowIndex => {
 };
 
 function Cell({ columnIndex, rowIndex, style, personList }) {
-  console.log(personList);
   const user = Object.values(personList[rowIndex]);
   const info = user[columnIndex];
 
