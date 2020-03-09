@@ -1,7 +1,13 @@
 export const sortBy = category => {
-  console.log('dispatch sorting', typeof category);
   return {
     type: 'SORT_BY',
     payload: category,
+  };
+};
+
+export const filterByText = textInput => {
+  return {
+    type: 'FILTER_BY_TEXT',
+    payload: textInput,
   };
 };

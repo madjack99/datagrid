@@ -17,6 +17,21 @@ const sortByCategory = (state, category) => {
   });
 };
 
+const filterByText = (state, textInput) => {
+  const { personList } = state;
+  return personList.filter(item => {
+    const itemValues = Object.values(item);
+    const stringValues = itemValues.filter(value => typeof value === 'string');
+    for (let personValue of stringValues) {
+      const lowerPersonValue = personValue.toLowerCase();
+      if (lowerPersonValue.includes(textInput)) {
+        return item;
+      }
+    }
+    return false;
+  });
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_INITIAL_LIST':
@@ -28,6 +43,11 @@ const reducer = (state = initialState, action) => {
       return {
         personList: [...sortByCategory(state, action.payload)],
         previouslySortedBy: action.payload,
+      };
+    case 'FILTER_BY_TEXT':
+      return {
+        ...state,
+        personList: [...filterByText(state, action.payload)],
       };
     default:
       return state;

@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+
+import { filterByText } from '../../../actions';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function FormText() {
+function FormText({ filterByText }) {
   const classes = useStyles();
   const [inputText, setInputText] = useState('');
 
@@ -22,7 +25,7 @@ function FormText() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(inputText);
+    filterByText(inputText.toLowerCase());
   };
 
   return (
@@ -46,4 +49,8 @@ function FormText() {
   );
 }
 
-export default FormText;
+const mapDispatchToProps = dispatch => ({
+  filterByText: textInput => dispatch(filterByText(textInput)),
+});
+
+export default connect(null, mapDispatchToProps)(FormText);
