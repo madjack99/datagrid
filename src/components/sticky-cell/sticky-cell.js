@@ -5,6 +5,9 @@ import { sortBy } from '../../actions';
 
 import './sticky-cell.css';
 
+const UP_ARROW = '\u2191';
+const DOWN_ARROW = '\u2193';
+
 const handleClick = (e, dispatcher, clickCount, setClickCount) => {
   const category = e.target.innerHTML.split(' ')[0];
   dispatcher(category);
@@ -24,9 +27,11 @@ const StickyCell = ({
   const tableHeaders = Object.keys(personList[rowIndex]);
   const info = tableHeaders[columnIndex];
 
-  let sortDirection = previouslySortedBy === info ? '\u2191' : '';
+  let sortDirection = previouslySortedBy === info ? UP_ARROW : '';
   if (sortDirection) {
-    sortDirection = clickCount % 2 ? '\u2191' : '\u2193';
+    sortDirection = clickCount % 2 ? UP_ARROW : DOWN_ARROW;
+  } else if (clickCount !== 0) {
+    setClickCount(0);
   }
 
   return (
