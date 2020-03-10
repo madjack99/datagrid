@@ -2,6 +2,7 @@ import React from 'react';
 
 import FormText from '../text';
 import FormRadio from '../radio';
+import FormMultipleSelection from '../multiple-selection';
 
 function FormCombined() {
   return (
@@ -9,6 +10,7 @@ function FormCombined() {
       Form
       <FormText />
       <FormRadio />
+      <FormMultipleSelection />
     </div>
   );
 }
