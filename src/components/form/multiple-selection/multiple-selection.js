@@ -25,23 +25,72 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Oliver Hansen',
-  'Van Henry',
-  'April Tucker',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
+const states = [
+  'AL',
+  'AK',
+  'AS',
+  'AZ',
+  'AR',
+  'CA',
+  'CO',
+  'CT',
+  'DE',
+  'DC',
+  'FM',
+  'FL',
+  'GA',
+  'GU',
+  'HI',
+  'ID',
+  'IL',
+  'IN',
+  'IA',
+  'KS',
+  'KY',
+  'LA',
+  'ME',
+  'MH',
+  'MD',
+  'MA',
+  'MI',
+  'MN',
+  'MS',
+  'MO',
+  'MT',
+  'NE',
+  'NV',
+  'NH',
+  'NJ',
+  'NM',
+  'NY',
+  'NC',
+  'ND',
+  'MP',
+  'OH',
+  'OK',
+  'OR',
+  'PW',
+  'PA',
+  'PR',
+  'RI',
+  'SC',
+  'SD',
+  'TN',
+  'TX',
+  'UT',
+  'VT',
+  'VI',
+  'VA',
+  'WA',
+  'WV',
+  'WI',
+  'WY',
 ];
 
-function getStyles(name, personName, theme) {
+function getStyles(state, stateName, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+      stateName.indexOf(state) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
@@ -50,12 +99,12 @@ function getStyles(name, personName, theme) {
 function FormMultipleSelection() {
   const classes = useStyles();
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [stateName, setStateName] = React.useState([]);
 
   const handleChange = event => {
-    setPersonName(event.target.value);
+    setStateName(event.target.value);
   };
-  console.log(personName);
+  console.log(stateName);
 
   return (
     <FormControl className={classes.formControl}>
@@ -64,18 +113,18 @@ function FormMultipleSelection() {
         labelId='multiple-state-label'
         id='multiple-state'
         multiple
-        value={personName}
+        value={stateName}
         onChange={handleChange}
         input={<Input />}
         MenuProps={MenuProps}
       >
-        {names.map(name => (
+        {states.map(state => (
           <MenuItem
-            key={name}
-            value={name}
-            style={getStyles(name, personName, theme)}
+            key={state}
+            value={state}
+            style={getStyles(state, stateName, theme)}
           >
-            {name}
+            {state}
           </MenuItem>
         ))}
       </Select>
