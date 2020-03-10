@@ -32,6 +32,19 @@ const filterByText = (state, textInput) => {
   });
 };
 
+const filterByStatus = status => {
+  const { personList } = initialState;
+  let result;
+  if (status === 'married') {
+    result = personList.filter(person => person.married === 'Yes');
+  } else if (status === 'single') {
+    result = personList.filter(person => person.married === 'No');
+  } else {
+    result = personList;
+  }
+  return result;
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_INITIAL_LIST':
@@ -48,6 +61,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         personList: [...filterByText(state, action.payload)],
+      };
+    case 'FILTER_BY_STATUS':
+      return {
+        ...state,
+        personList: [...filterByStatus(action.payload)],
       };
     default:
       return state;

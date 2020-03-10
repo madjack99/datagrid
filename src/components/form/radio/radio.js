@@ -4,13 +4,16 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import { connect } from 'react-redux';
 
-function FormRadio() {
+import { filterByStatus } from '../../../actions';
+
+function FormRadio({ filterByStatus }) {
   const [value, setValue] = React.useState('');
 
   const handleChange = event => {
-    console.log(event.target.value);
     setValue(event.target.value);
+    filterByStatus(event.target.value);
   };
 
   return (
@@ -36,9 +39,9 @@ function FormRadio() {
           labelPlacement='top'
         />
         <FormControlLabel
-          value='all'
+          value='both'
           control={<Radio color='primary' />}
-          label='All'
+          label='Both'
           labelPlacement='top'
         />
       </RadioGroup>
@@ -46,4 +49,8 @@ function FormRadio() {
   );
 }
 
-export default FormRadio;
+const mapDispatchToProps = dispatch => ({
+  filterByStatus: status => dispatch(filterByStatus(status)),
+});
+
+export default connect(null, mapDispatchToProps)(FormRadio);

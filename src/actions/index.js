@@ -11,3 +11,10 @@ export const filterByText = textInput => {
     payload: textInput,
   };
 };
+
+export const filterByStatus = status => {
+  return {
+    type: 'FILTER_BY_STATUS',
+    payload: status,
+  };
+};
