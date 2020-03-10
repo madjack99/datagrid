@@ -45,6 +45,11 @@ const filterByStatus = status => {
   return result;
 };
 
+const filterByState = (state, selectedStates) => {
+  const { personList } = state;
+  return personList.filter(({ state }) => selectedStates.includes(state));
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_INITIAL_LIST':
@@ -66,6 +71,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         personList: [...filterByStatus(action.payload)],
+      };
+    case 'FILTER_BY_STATE':
+      return {
+        ...state,
+        personList: [...filterByState(state, action.payload)],
       };
     default:
       return state;
