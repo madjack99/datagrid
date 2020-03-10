@@ -8,12 +8,6 @@ import './sticky-cell.css';
 const UP_ARROW = '\u2191';
 const DOWN_ARROW = '\u2193';
 
-const handleClick = (e, dispatcher, clickCount, setClickCount) => {
-  const category = e.target.innerHTML.split(' ')[0];
-  dispatcher(category);
-  setClickCount(++clickCount);
-};
-
 const StickyCell = ({
   rowIndex,
   columnIndex,
@@ -28,6 +22,15 @@ const StickyCell = ({
   const info = tableHeaders[columnIndex];
 
   let sortDirection = previouslySortedBy === info ? UP_ARROW : '';
+
+  const handleClick = e => {
+    e.persist();
+    const category = e.target.innerHTML.split(' ')[0];
+
+    sortBy(category);
+    setClickCount(clickCount + 1);
+  };
+
   if (sortDirection) {
     sortDirection = clickCount % 2 ? UP_ARROW : DOWN_ARROW;
   } else if (clickCount !== 0) {
@@ -38,7 +41,7 @@ const StickyCell = ({
     <div
       className='sticky-cell row t-head'
       style={style}
-      onClick={e => handleClick(e, sortBy, clickCount, setClickCount)}
+      onClick={e => handleClick(e)}
     >
       {`${info} ${sortDirection}`}
     </div>
