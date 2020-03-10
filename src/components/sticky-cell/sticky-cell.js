@@ -26,7 +26,7 @@ const StickyCell = ({
   const handleClick = e => {
     e.persist();
     const category = e.target.innerHTML.split(' ')[0];
-
+    console.log(sortDirection);
     sortBy(category);
     setClickCount(clickCount + 1);
   };

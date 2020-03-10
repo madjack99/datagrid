@@ -1,8 +1,10 @@
 import getFakeData from '../services/data';
+import orderBy from 'lodash/orderBy';
 
 const initialState = {
   personList: getFakeData(),
   previouslySortedBy: null,
+  multipleFieldsSort: [],
 };
 
 const sortByCategory = (state, category) => {
@@ -54,15 +56,32 @@ const filterByState = selectedStates => {
   return result;
 };
 
+const sortByMultipleFields = (state, sortInstructions) => {
+  const { personList, multipleFieldsSort } = state;
+
+  const updatedSortInstructions = [...multipleFieldsSort, sortInstructions];
+
+  const fields = updatedSortInstructions.map(item => item.field);
+  const direction = updatedSortInstructions.map(item => item.direction);
+  return orderBy(personList, fields, direction);
+};
+
+const updateMultipleFieldsSortInstructions = (state, sortInstructions) => {
+  const { multipleFieldsSort } = state;
+  return [...multipleFieldsSort, sortInstructions];
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_INITIAL_LIST':
       return {
+        ...state,
         personList: [...initialState.personList],
         previouslySortedBy: null,
       };
     case 'SORT_BY':
       return {
+        ...state,
         personList: [...sortByCategory(state, action.payload)],
         previouslySortedBy: action.payload,
       };
@@ -80,6 +99,15 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         personList: [...filterByState(action.payload)],
+      };
+    case 'SORT_BY_MULTIPLE_FIELDS':
+      return {
+        ...state,
+        personList: [...sortByMultipleFields(state, action.payload)],
+        multipleFieldsSort: updateMultipleFieldsSortInstructions(
+          state,
+          action.payload
+        ),
       };
     default:
       return state;
