@@ -18,3 +18,10 @@ export const filterByStatus = status => {
     payload: status,
   };
 };
+
+export const filterByState = selectedStates => {
+  return {
+    type: 'FILTER_BY_STATE',
+    payload: selectedStates,
+  };
+};

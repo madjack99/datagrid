@@ -5,6 +5,9 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { connect } from 'react-redux';
+
+import { filterByState } from '../../../actions';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -96,7 +99,7 @@ function getStyles(state, stateName, theme) {
   };
 }
 
-function FormMultipleSelection() {
+function FormMultipleSelection({ filterByState }) {
   const classes = useStyles();
   const theme = useTheme();
   const [stateName, setStateName] = React.useState([]);
@@ -105,6 +108,10 @@ function FormMultipleSelection() {
     setStateName(event.target.value);
   };
   console.log(stateName);
+
+  React.useEffect(() => {
+    filterByState(stateName);
+  }, [stateName, filterByState]);
 
   return (
     <FormControl className={classes.formControl}>
@@ -132,4 +139,8 @@ function FormMultipleSelection() {
   );
 }
 
-export default FormMultipleSelection;
+const mapDispatchToProps = dispatch => ({
+  filterByState: selectedStates => dispatch(filterByState(selectedStates)),
+});
+
+export default connect(null, mapDispatchToProps)(FormMultipleSelection);

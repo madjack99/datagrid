@@ -45,9 +45,14 @@ const filterByStatus = status => {
   return result;
 };
 
-const filterByState = (state, selectedStates) => {
-  const { personList } = state;
-  return personList.filter(({ state }) => selectedStates.includes(state));
+const filterByState = selectedStates => {
+  const { personList } = initialState;
+  const result = personList.filter(({ state }) =>
+    selectedStates.includes(state)
+  );
+  console.log(result, 'result');
+  if (result.length === 0 || selectedStates.length === 0) return personList;
+  return result;
 };
 
 const reducer = (state = initialState, action) => {
@@ -75,7 +80,7 @@ const reducer = (state = initialState, action) => {
     case 'FILTER_BY_STATE':
       return {
         ...state,
-        personList: [...filterByState(state, action.payload)],
+        personList: [...filterByState(action.payload)],
       };
     default:
       return state;
