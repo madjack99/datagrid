@@ -139,8 +139,4 @@ function FormMultipleSelection({ filterByState }) {
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  filterByState: selectedStates => dispatch(filterByState(selectedStates)),
-});
-
-export default connect(null, mapDispatchToProps)(FormMultipleSelection);
+export default connect(null, { filterByState })(FormMultipleSelection);

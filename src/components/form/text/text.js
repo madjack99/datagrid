@@ -49,8 +49,4 @@ function FormText({ filterByText }) {
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  filterByText: textInput => dispatch(filterByText(textInput)),
-});
-
-export default connect(null, mapDispatchToProps)(FormText);
+export default connect(null, { filterByText })(FormText);

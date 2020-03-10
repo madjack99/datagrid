@@ -49,8 +49,4 @@ function FormRadio({ filterByStatus }) {
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  filterByStatus: status => dispatch(filterByStatus(status)),
-});
-
-export default connect(null, mapDispatchToProps)(FormRadio);
+export default connect(null, { filterByStatus })(FormRadio);

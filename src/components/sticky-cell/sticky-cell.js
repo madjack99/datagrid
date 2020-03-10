@@ -50,10 +50,4 @@ const mapStateToProps = ({ personList, previouslySortedBy }) => ({
   previouslySortedBy,
 });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    sortBy: category => dispatch(sortBy(category)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(StickyCell);
+export default connect(mapStateToProps, { sortBy })(StickyCell);
