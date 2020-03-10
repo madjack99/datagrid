@@ -11,9 +11,19 @@ import { filterByState } from '../../../actions';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+    border: '1px solid black',
+    borderRadius: '5px',
+    margin: 15,
     maxWidth: 300,
+    minHeight: 100,
+    '& > *': {
+      margin: theme.spacing(1),
+      width: 250,
+    },
+  },
+  formLabel: {
+    fontWeight: theme.typography.fontWeightMedium,
+    color: theme.palette.primary.dark,
   },
 }));
 
@@ -115,7 +125,9 @@ function FormMultipleSelection({ filterByState }) {
 
   return (
     <FormControl className={classes.formControl}>
-      <InputLabel id='multiple-state-label'>Filter by states</InputLabel>
+      <InputLabel id='multiple-state-label' className={classes.formLabel}>
+        Filter by states
+      </InputLabel>
       <Select
         labelId='multiple-state-label'
         id='multiple-state'

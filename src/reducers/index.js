@@ -50,7 +50,6 @@ const filterByState = selectedStates => {
   const result = personList.filter(({ state }) =>
     selectedStates.includes(state)
   );
-  console.log(result, 'result');
   if (result.length === 0 || selectedStates.length === 0) return personList;
   return result;
 };

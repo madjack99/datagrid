@@ -8,6 +8,10 @@ import { filterByText } from '../../../actions';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    border: '1px solid black',
+    borderRadius: '5px',
+    margin: '10px',
+    width: 260,
     '& > *': {
       margin: theme.spacing(1),
       width: 200,
@@ -37,11 +41,12 @@ function FormText({ filterByText }) {
     >
       <TextField
         id='outlined-basic'
-        label='Outlined'
+        label='Search for...'
         variant='outlined'
         value={inputText}
         onChange={handleChange}
       />
+      <br />
       <Button variant='contained' color='primary' type='submit'>
         Filter by text
       </Button>
