@@ -61,15 +61,34 @@ const sortByMultipleFields = (state, sortInstructions) => {
 
   const updatedSortInstructions = [...multipleFieldsSort, sortInstructions];
 
+  const indexOfInsturction = updatedSortInstructions.findIndex(
+    item => item.field === sortInstructions.field
+  );
+
   const fields = updatedSortInstructions.map(item => item.field);
-  const direction = updatedSortInstructions.map(item => item.direction);
-  return orderBy(personList, fields, direction);
+  const directions = updatedSortInstructions.map(item => item.direction);
+
+  if (indexOfInsturction !== updatedSortInstructions.length - 1) {
+    fields.splice(indexOfInsturction, 1);
+    directions.splice(indexOfInsturction, 1);
+
+    updatedSortInstructions.splice(indexOfInsturction, 1);
+  }
+
+  console.log(fields);
+  console.log(directions);
+
+  // return orderBy(personList, fields, directions);
+  return {
+    personList: orderBy(personList, fields, directions),
+    multipleFieldsSort: updatedSortInstructions,
+  };
 };
 
-const updateMultipleFieldsSortInstructions = (state, sortInstructions) => {
-  const { multipleFieldsSort } = state;
-  return [...multipleFieldsSort, sortInstructions];
-};
+// const updateMultipleFieldsSortInstructions = (state, sortInstructions) => {
+//   const { multipleFieldsSort } = state;
+//   return [...multipleFieldsSort, sortInstructions];
+// };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -103,11 +122,8 @@ const reducer = (state = initialState, action) => {
     case 'SORT_BY_MULTIPLE_FIELDS':
       return {
         ...state,
-        personList: [...sortByMultipleFields(state, action.payload)],
-        multipleFieldsSort: updateMultipleFieldsSortInstructions(
-          state,
-          action.payload
-        ),
+        ...sortByMultipleFields(state, action.payload),
+        previouslySortedBy: action.payload.field,
       };
     default:
       return state;

@@ -25,3 +25,10 @@ export const filterByState = selectedStates => {
     payload: selectedStates,
   };
 };
+
+export const sortByMultipleFields = sortInstructions => {
+  return {
+    type: 'SORT_BY_MULTIPLE_FIELDS',
+    payload: sortInstructions,
+  };
+};

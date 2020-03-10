@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { sortBy } from '../../actions';
+import { sortBy, sortByMultipleFields } from '../../actions';
 
 import './sticky-cell.css';
 
@@ -15,6 +15,7 @@ const StickyCell = ({
   personList,
   sortBy,
   previouslySortedBy,
+  sortByMultipleFields,
 }) => {
   const [clickCount, setClickCount] = useState(0);
 
@@ -23,11 +24,22 @@ const StickyCell = ({
 
   let sortDirection = previouslySortedBy === info ? UP_ARROW : '';
 
+  const calculateSortDirection = () => {
+    console.log(clickCount);
+    return clickCount % 2 ? 'desc' : 'asc';
+  };
+
   const handleClick = e => {
     e.persist();
     const category = e.target.innerHTML.split(' ')[0];
-    console.log(sortDirection);
-    sortBy(category);
+
+    if (e.ctrlKey) {
+      const direction = calculateSortDirection();
+      sortByMultipleFields({ direction, field: category });
+    } else {
+      sortBy(category);
+    }
+
     setClickCount(clickCount + 1);
   };
 
@@ -53,4 +65,6 @@ const mapStateToProps = ({ personList, previouslySortedBy }) => ({
   previouslySortedBy,
 });
 
-export default connect(mapStateToProps, { sortBy })(StickyCell);
+export default connect(mapStateToProps, { sortBy, sortByMultipleFields })(
+  StickyCell
+);
