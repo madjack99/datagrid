@@ -37,6 +37,7 @@ function Cell({
       <input
         type='checkbox'
         className='id-column__input'
+        checked={checkedRowsList.includes(rowIndex)}
         onChange={handleChecked}
         value={rowIndex}
       ></input>
