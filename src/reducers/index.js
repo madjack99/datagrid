@@ -84,13 +84,13 @@ const sortByMultipleFields = (state, sortInstructions) => {
 
 const addToCheckedRowsList = (state, rowId) => {
   const { checkedRowsList } = state;
-  const itemIndex = checkedRowsList.findIndex(rowId);
+  const itemIndex = checkedRowsList.indexOf(parseInt(rowId));
   let result;
 
   if (itemIndex > -1) {
     result = checkedRowsList.filter((item, index) => index !== itemIndex);
   } else {
-    result = [...checkedRowsList, itemIndex];
+    result = [...checkedRowsList, parseInt(rowId)];
   }
 
   return result;
