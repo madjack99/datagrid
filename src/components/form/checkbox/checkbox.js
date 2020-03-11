@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import { makeStyles } from '@material-ui/core/styles';
+
+import { hideColumn } from '../../../actions';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +28,6 @@ const useStyles = makeStyles(theme => ({
 function FormCheckbox() {
   const classes = useStyles();
   const [hiddenColumns, setHiddenColumns] = useState([]);
-  console.log(hiddenColumns);
 
   const handleCheck = e => {
     const { value } = e.target;
@@ -38,6 +39,10 @@ function FormCheckbox() {
       setHiddenColumns([...hiddenColumns, value]);
     }
   };
+
+  useEffect(() => {
+    hideColumn(hiddenColumns);
+  });
 
   return (
     <FormControl component='fieldset' className={classes.root}>

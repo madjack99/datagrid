@@ -45,3 +45,10 @@ export const deleteRow = () => {
     type: 'DELETE_ROW',
   };
 };
+
+export const hideColumn = hiddenColumns => {
+  return {
+    type: 'HIDE_COLUMN',
+    payload: hiddenColumns,
+  };
+};
