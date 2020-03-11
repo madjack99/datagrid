@@ -103,6 +103,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         personList: [...sortByCategory(state, action.payload)],
         previouslySortedBy: action.payload,
+        multipleFieldsSort: [],
       };
     case 'FILTER_BY_TEXT':
       return {
