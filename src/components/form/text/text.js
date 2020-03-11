@@ -8,6 +8,7 @@ import { filterByText } from '../../../actions';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    display: 'inline-block',
     border: '1px solid black',
     borderRadius: '5px',
     margin: '10px',
@@ -33,7 +34,7 @@ function FormText({ filterByText }) {
   };
 
   return (
-    <form
+    <div
       className={classes.root}
       noValidate
       autoComplete='off'
@@ -50,7 +51,7 @@ function FormText({ filterByText }) {
       <Button variant='contained' color='primary' type='submit'>
         Filter by text
       </Button>
-    </form>
+    </div>
   );
 }
 
