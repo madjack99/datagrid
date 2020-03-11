@@ -1,5 +1,6 @@
 import getFakeData from '../services/data';
 import orderBy from 'lodash/orderBy';
+import cloneDeep from 'lodash.clonedeep';
 
 const initialState = {
   personList: getFakeData(),
@@ -100,6 +101,19 @@ const deleteSelectedRows = ({ checkedRowsList, personList }) => {
   return personList.filter((item, index) => !checkedRowsList.includes(index));
 };
 
+const hideColumn = hiddenColumns => {
+  console.log(hiddenColumns);
+  const { personList } = initialState;
+  const clone = cloneDeep(personList);
+  return clone.map(item => {
+    for (let value of hiddenColumns) {
+      delete item[value];
+    }
+    console.log(item);
+    return item;
+  });
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_INITIAL_LIST':
@@ -146,6 +160,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         checkedRowsList: [],
         personList: deleteSelectedRows(state),
+      };
+    case 'HIDE_COLUMN':
+      return {
+        ...state,
+        personList: hideColumn(action.payload),
       };
     default:
       return state;

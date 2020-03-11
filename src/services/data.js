@@ -3,7 +3,7 @@ import faker from 'faker';
 const getFakeData = () => {
   faker.seed(1);
   const fakeData = [];
-  for (let i = 0; i < 1001; i++) {
+  for (let i = 0; i < 2; i++) {
     const id = i;
     const name = faker.name.findName();
     const age = faker.random.number({ min: 18, max: 100 });
