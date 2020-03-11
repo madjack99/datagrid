@@ -66,6 +66,10 @@ class StickyGrid extends React.Component {
 }
 
 const Grid = ({ personList }) => {
+  const ONE_ROW_VALUES = personList.length
+    ? Object.keys(personList[0]).length
+    : 8;
+  console.log(personList);
   const staticGrid = React.useRef(null);
   const onScroll = React.useCallback(
     ({ scrollTop, scrollUpdateWasRequested }) => {
@@ -97,7 +101,7 @@ const Grid = ({ personList }) => {
       </StickyGrid>
       <StickyGrid
         onScroll={onScroll}
-        columnCount={8}
+        columnCount={ONE_ROW_VALUES}
         columnWidth={150}
         rowCount={personList.length}
         rowHeight={50}

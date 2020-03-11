@@ -102,14 +102,12 @@ const deleteSelectedRows = ({ checkedRowsList, personList }) => {
 };
 
 const hideColumn = hiddenColumns => {
-  console.log(hiddenColumns);
   const { personList } = initialState;
   const clone = cloneDeep(personList);
   return clone.map(item => {
     for (let value of hiddenColumns) {
       delete item[value];
     }
-    console.log(item);
     return item;
   });
 };
