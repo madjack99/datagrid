@@ -39,3 +39,9 @@ export const checkRow = rowId => {
     payload: rowId,
   };
 };
+
+export const deleteRow = () => {
+  return {
+    type: 'DELETE_ROW',
+  };
+};

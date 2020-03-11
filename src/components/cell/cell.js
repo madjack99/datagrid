@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { checkRow } from '../../actions';
+import { checkRow, deleteRow } from '../../actions';
 
 import './cell.css';
 
@@ -16,6 +16,7 @@ function Cell({
   personList,
   checkedRowsList,
   checkRow,
+  deleteRow,
 }) {
   // console.log(personList);
   const user = Object.values(personList[rowIndex]);
@@ -27,8 +28,14 @@ function Cell({
     checkRow(e.target.value);
   };
 
+  const handleDeleteRow = () => {
+    deleteRow();
+  };
+
   const showDeleteButton = () => {
-    return checkedRowsList.includes(rowIndex) ? <button>Delete</button> : null;
+    return checkedRowsList.includes(rowIndex) ? (
+      <button onClick={handleDeleteRow}>Delete</button>
+    ) : null;
   };
 
   const idColumn = (
@@ -57,4 +64,4 @@ const mapStateToProps = ({ personList, checkedRowsList }) => ({
   checkedRowsList,
 });
 
-export default connect(mapStateToProps, { checkRow })(Cell);
+export default connect(mapStateToProps, { checkRow, deleteRow })(Cell);

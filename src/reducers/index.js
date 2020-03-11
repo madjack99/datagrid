@@ -96,6 +96,10 @@ const addToCheckedRowsList = (state, rowId) => {
   return result;
 };
 
+const deleteSelectedRows = ({ checkedRowsList, personList }) => {
+  return personList.filter((item, index) => !checkedRowsList.includes(index));
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_INITIAL_LIST':
@@ -136,6 +140,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         checkedRowsList: addToCheckedRowsList(state, action.payload),
+      };
+    case 'DELETE_ROW':
+      return {
+        ...state,
+        checkedRowsList: [],
+        personList: deleteSelectedRows(state),
       };
     default:
       return state;
