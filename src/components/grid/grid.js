@@ -85,7 +85,7 @@ const Grid = ({ personList }) => {
         style={{ overflowY: 'hidden' }}
         className='fixed-column'
         columnCount={1}
-        columnWidth={50}
+        columnWidth={100}
         rowCount={personList.length}
         rowHeight={50}
         height={250}

@@ -14,9 +14,25 @@ function Cell({ columnIndex, rowIndex, style, personList }) {
 
   const clazz = calculateClass(rowIndex);
 
+  const handleChecked = e => {
+    console.log(e.target.value);
+  };
+
+  const idColumn = (
+    <span>
+      {rowIndex}
+      <input
+        type='checkbox'
+        className='id-column__input'
+        onChange={handleChecked}
+        value={rowIndex}
+      ></input>
+    </span>
+  );
+
   return (
     <div className={clazz} style={style}>
-      {columnIndex === 0 ? rowIndex : info}
+      {columnIndex === 0 ? idColumn : info}
     </div>
   );
 }

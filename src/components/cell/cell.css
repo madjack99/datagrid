@@ -30,3 +30,7 @@
 .even {
   background: seashell;
 }
+
+.id-column__input {
+  margin-left: 5px;
+}
