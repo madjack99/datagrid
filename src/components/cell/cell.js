@@ -7,16 +7,14 @@ const calculateClass = rowIndex => {
   return rowIndex % 2 === 0 ? 'even row' : 'odd row';
 };
 
-function Cell({ columnIndex, rowIndex, style, personList }) {
+function Cell({ columnIndex, rowIndex, style, personList, checkedRowsList }) {
   // console.log(personList);
   const user = Object.values(personList[rowIndex]);
   const info = user[columnIndex];
 
   const clazz = calculateClass(rowIndex);
-
-  const handleChecked = e => {
-    console.log(e.target.value);
-  };
+  console.log(checkedRowsList);
+  const handleChecked = e => {};
 
   const idColumn = (
     <span>
@@ -37,8 +35,9 @@ function Cell({ columnIndex, rowIndex, style, personList }) {
   );
 }
 
-const mapStateToProps = ({ personList }) => ({
+const mapStateToProps = ({ personList, checkedRowsList }) => ({
   personList,
+  checkedRowsList,
 });
 
 export default connect(mapStateToProps)(Cell);

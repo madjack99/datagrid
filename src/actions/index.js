@@ -32,3 +32,10 @@ export const sortByMultipleFields = sortInstructions => {
     payload: sortInstructions,
   };
 };
+
+export const checkRow = rowId => {
+  return {
+    type: 'CHECK_ROW',
+    payload: rowId,
+  };
+};

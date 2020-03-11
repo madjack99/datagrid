@@ -5,6 +5,7 @@ const initialState = {
   personList: getFakeData(),
   previouslySortedBy: null,
   multipleFieldsSort: [],
+  checkedRowsList: [],
 };
 
 const sortByCategory = (state, category) => {
@@ -61,34 +62,39 @@ const sortByMultipleFields = (state, sortInstructions) => {
 
   const updatedSortInstructions = [...multipleFieldsSort, sortInstructions];
 
-  const indexOfInsturction = updatedSortInstructions.findIndex(
+  const indexOfInstruction = updatedSortInstructions.findIndex(
     item => item.field === sortInstructions.field
   );
 
   const fields = updatedSortInstructions.map(item => item.field);
   const directions = updatedSortInstructions.map(item => item.direction);
 
-  if (indexOfInsturction !== updatedSortInstructions.length - 1) {
-    fields.splice(indexOfInsturction, 1);
-    directions.splice(indexOfInsturction, 1);
+  if (indexOfInstruction !== updatedSortInstructions.length - 1) {
+    fields.splice(indexOfInstruction, 1);
+    directions.splice(indexOfInstruction, 1);
 
-    updatedSortInstructions.splice(indexOfInsturction, 1);
+    updatedSortInstructions.splice(indexOfInstruction, 1);
   }
 
-  console.log(fields);
-  console.log(directions);
-
-  // return orderBy(personList, fields, directions);
   return {
     personList: orderBy(personList, fields, directions),
     multipleFieldsSort: updatedSortInstructions,
   };
 };
 
-// const updateMultipleFieldsSortInstructions = (state, sortInstructions) => {
-//   const { multipleFieldsSort } = state;
-//   return [...multipleFieldsSort, sortInstructions];
-// };
+const addToCheckedRowsList = (state, rowId) => {
+  const { checkedRowsList } = state;
+  const itemIndex = checkedRowsList.findIndex(rowId);
+  let result;
+
+  if (itemIndex > -1) {
+    result = checkedRowsList.filter((item, index) => index !== itemIndex);
+  } else {
+    result = [...checkedRowsList, itemIndex];
+  }
+
+  return result;
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -125,6 +131,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         ...sortByMultipleFields(state, action.payload),
         previouslySortedBy: action.payload.field,
+      };
+    case 'CHECK_ROW':
+      return {
+        ...state,
+        checkedRowsList: addToCheckedRowsList(state, action.payload),
       };
     default:
       return state;
