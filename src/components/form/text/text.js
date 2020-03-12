@@ -34,7 +34,7 @@ function FormText({ filterByText }) {
   };
 
   return (
-    <div
+    <form
       className={classes.root}
       noValidate
       autoComplete='off'
@@ -51,7 +51,7 @@ function FormText({ filterByText }) {
       <Button variant='contained' color='primary' type='submit'>
         Filter by text
       </Button>
-    </div>
+    </form>
   );
 }
 

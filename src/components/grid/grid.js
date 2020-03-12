@@ -69,7 +69,7 @@ const Grid = ({ personList }) => {
   const ONE_ROW_VALUES = personList.length
     ? Object.keys(personList[0]).length
     : 8;
-  console.log(document.URL);
+  // console.log(document.URL);
   const staticGrid = React.useRef(null);
   const onScroll = React.useCallback(
     ({ scrollTop, scrollUpdateWasRequested }) => {

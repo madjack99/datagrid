@@ -117,7 +117,6 @@ function FormMultipleSelection({ filterByState }) {
   const handleChange = event => {
     setStateName(event.target.value);
   };
-  console.log(stateName);
 
   React.useEffect(() => {
     filterByState(stateName);
