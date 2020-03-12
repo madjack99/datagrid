@@ -1,7 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    marginLeft: 10,
+  },
+}));
 
 function CsvFile({ personList }) {
+  const classes = useStyles();
+
   const downloadCsv = () => {
     let csv = 'ID,NAME,AGE,MARRIED,STATE,COMPANY,JOB,SALARY\n';
     personList.forEach((item, index) => {
@@ -23,7 +33,14 @@ function CsvFile({ personList }) {
 
   return (
     <div>
-      <button onClick={downloadCsv}>Download CSV file</button>
+      <Button
+        className={classes.root}
+        variant='contained'
+        color='primary'
+        onClick={downloadCsv}
+      >
+        Download CSV file
+      </Button>
     </div>
   );
 }
