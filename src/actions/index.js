@@ -52,3 +52,10 @@ export const hideColumn = hiddenColumns => {
     payload: hiddenColumns,
   };
 };
+
+export const filterByTextAndState = (text, state) => {
+  return {
+    type: 'FILTER_BY_TEXT_AND_STATE',
+    payload: [text, state],
+  };
+};

@@ -112,6 +112,11 @@ const hideColumn = hiddenColumns => {
   });
 };
 
+const filterByTextAndState = ([text, state]) => {
+  const filteredStates = filterByState(state);
+  return filterByText({ personList: filteredStates }, text);
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_INITIAL_LIST':
@@ -163,6 +168,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         personList: hideColumn(action.payload),
+      };
+    case 'FILTER_BY_TEXT_AND_STATE':
+      return {
+        ...state,
+        personList: filterByTextAndState(action.payload),
       };
     default:
       return state;
