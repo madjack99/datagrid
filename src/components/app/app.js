@@ -1,24 +1,28 @@
-import React from 'react';
-import { Provider } from 'react-redux';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Grid from '../grid';
 import FormCombined from '../form/combined';
-import store from '../../store';
 import CsvFile from '../csv-file';
 import QueryString from '../query-string';
+import { loadSavedPersonList } from '../../actions';
 
-function App() {
+function App({ loadSavedPersonList }) {
+  useEffect(() => {
+    const savedPersonList = JSON.parse(localStorage.getItem('savedPersonList'));
+    if (savedPersonList) {
+      loadSavedPersonList(savedPersonList);
+    }
+  });
   return (
-    <Provider store={store}>
-      <Router>
-        <Grid />
-        <QueryString />
-        <FormCombined />
-        <CsvFile />
-      </Router>
-    </Provider>
+    <Router>
+      <Grid />
+      <QueryString />
+      <FormCombined />
+      <CsvFile />
+    </Router>
   );
 }
 
-export default App;
+export default connect(null, { loadSavedPersonList })(App);

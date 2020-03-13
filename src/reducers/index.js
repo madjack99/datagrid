@@ -174,6 +174,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         personList: filterByTextAndState(action.payload),
       };
+    case 'LOAD_SAVED_PERSON_LIST':
+      return {
+        ...state,
+        personList: action.payload,
+      };
     default:
       return state;
   }
