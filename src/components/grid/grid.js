@@ -1,4 +1,4 @@
-import React, { createContext, forwardRef } from 'react';
+import React, { createContext, forwardRef, useEffect } from 'react';
 import { FixedSizeGrid } from 'react-window';
 import { connect } from 'react-redux';
 
@@ -69,8 +69,22 @@ const Grid = ({ personList }) => {
   const ONE_ROW_VALUES = personList.length
     ? Object.keys(personList[0]).length
     : 8;
-  // console.log(document.URL);
   const staticGrid = React.useRef(null);
+
+  const latestPersonList = React.useRef(null);
+  latestPersonList.current = personList;
+
+  useEffect(() => {
+    const savedPersonList = JSON.parse(localStorage.getItem('savedPersonList'));
+    console.log(savedPersonList);
+    return () => {
+      localStorage.setItem(
+        'savedPersonList',
+        JSON.stringify(latestPersonList.current)
+      );
+    };
+  });
+
   const onScroll = React.useCallback(
     ({ scrollTop, scrollUpdateWasRequested }) => {
       if (!scrollUpdateWasRequested) {
