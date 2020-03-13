@@ -59,3 +59,10 @@ export const filterByTextAndState = (text, state) => {
     payload: [text, state],
   };
 };
+
+export const loadSavedPersonList = savedPersonList => {
+  return {
+    type: 'LOAD_SAVED_PERSON_LIST',
+    payload: savedPersonList,
+  };
+};

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Cell from '../cell';
 import StickyCell from '../sticky-cell';
+import { loadSavedPersonList } from '../../actions';
 
 import './grid.css';
 
@@ -65,7 +66,7 @@ class StickyGrid extends React.Component {
   }
 }
 
-const Grid = ({ personList }) => {
+const Grid = ({ personList, loadSavedPersonList }) => {
   const ONE_ROW_VALUES = personList.length
     ? Object.keys(personList[0]).length
     : 8;
@@ -76,7 +77,9 @@ const Grid = ({ personList }) => {
 
   useEffect(() => {
     const savedPersonList = JSON.parse(localStorage.getItem('savedPersonList'));
-    console.log(savedPersonList);
+    if (savedPersonList) {
+      loadSavedPersonList(savedPersonList);
+    }
     return () => {
       localStorage.setItem(
         'savedPersonList',
@@ -134,4 +137,4 @@ const mapStateToProps = ({ personList }) => ({
   personList,
 });
 
-export default connect(mapStateToProps)(Grid);
+export default connect(mapStateToProps, { loadSavedPersonList })(Grid);
