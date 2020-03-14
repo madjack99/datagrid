@@ -1,4 +1,4 @@
-import React, { createContext, forwardRef, useEffect } from 'react';
+import React, { createContext, forwardRef, useEffect, useState } from 'react';
 import { FixedSizeGrid } from 'react-window';
 import { connect } from 'react-redux';
 
@@ -77,7 +77,7 @@ const Grid = ({ personList }) => {
 
   useEffect(() => {
     return () => {
-      console.log(latestPersonList.current);
+      // console.log(latestPersonList.current);
       localStorage.setItem(
         'savedPersonList',
         JSON.stringify(latestPersonList.current)
@@ -97,13 +97,26 @@ const Grid = ({ personList }) => {
     []
   );
 
+  const [leftValue, setLeftValue] = useState(0);
+
+  const handleFixedColumnScroll = React.useCallback(e => {
+    setLeftValue(window.pageXOffset);
+    // staticGrid.current.props.style.left = window.pageXOffset;
+    // staticGrid.style.left = window.pageXOffset;
+    // console.log(window.pageXOffset);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleFixedColumnScroll);
+  });
+
   if (!personList.length) return <ErrorMessage />;
 
   return (
     <div className='two-grids-wrapper'>
       <StickyGrid
         ref={staticGrid}
-        style={{ overflowY: 'hidden' }}
+        style={{ overflowY: 'hidden', left: leftValue }}
         className='fixed-column'
         columnCount={1}
         columnWidth={150}
