@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Cell from '../cell';
 import StickyCell from '../sticky-cell';
+import ErrorMessage from '../error-message';
 
 import './grid.css';
 
@@ -96,7 +97,7 @@ const Grid = ({ personList }) => {
     []
   );
 
-  if (!personList.length) return 'Error';
+  if (!personList.length) return <ErrorMessage />;
 
   return (
     <div className='two-grids-wrapper'>
