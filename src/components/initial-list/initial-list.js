@@ -20,7 +20,7 @@ function InitialListLink({ getInitialList }) {
   };
 
   return (
-    <Link>
+    <Link to='/'>
       <Typography
         color='secondary'
         display='inline'
