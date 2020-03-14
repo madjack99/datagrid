@@ -95,6 +95,9 @@ const Grid = ({ personList }) => {
     },
     []
   );
+
+  if (!personList.length) return 'Error';
+
   return (
     <div className='two-grids-wrapper'>
       <StickyGrid

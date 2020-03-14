@@ -179,6 +179,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         personList: action.payload,
       };
+    case 'GET_INITIAL_LIST':
+      return {
+        ...state,
+        personList: initialState.personList,
+      };
     default:
       return state;
   }

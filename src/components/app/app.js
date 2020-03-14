@@ -7,6 +7,7 @@ import FormCombined from '../form/combined';
 import CsvFile from '../csv-file';
 import QueryString from '../query-string';
 import { loadSavedPersonList } from '../../actions';
+import InitialListLink from '../initial-list';
 
 function App({ loadSavedPersonList }) {
   useEffect(() => {
@@ -19,6 +20,7 @@ function App({ loadSavedPersonList }) {
     <Router>
       <Grid />
       <QueryString />
+      <InitialListLink />
       <FormCombined />
       <CsvFile />
     </Router>

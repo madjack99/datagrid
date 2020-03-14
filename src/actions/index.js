@@ -66,3 +66,9 @@ export const loadSavedPersonList = savedPersonList => {
     payload: savedPersonList,
   };
 };
+
+export const getInitialList = () => {
+  return {
+    type: 'GET_INITIAL_LIST',
+  };
+};
