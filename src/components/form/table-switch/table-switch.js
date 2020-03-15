@@ -23,7 +23,7 @@ function TableSwitch({ switchToSimpleTable }) {
           value='checkedA'
         />
       }
-      label='Switch to simple material ui table.'
+      label='Switch to simple material ui table. Display only mode. Main features work only with the original table.'
     />
   );
 }
