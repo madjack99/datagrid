@@ -25,7 +25,6 @@ const StickyCell = ({
   let sortDirection = previouslySortedBy === info ? UP_ARROW : '';
 
   const calculateSortDirection = () => {
-    console.log(clickCount);
     return clickCount % 2 ? 'desc' : 'asc';
   };
 

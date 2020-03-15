@@ -77,7 +77,6 @@ const Grid = ({ personList }) => {
 
   useEffect(() => {
     return () => {
-      // console.log(latestPersonList.current);
       localStorage.setItem(
         'savedPersonList',
         JSON.stringify(latestPersonList.current)
@@ -101,9 +100,6 @@ const Grid = ({ personList }) => {
 
   const handleFixedColumnScroll = React.useCallback(e => {
     setLeftValue(window.pageXOffset);
-    // staticGrid.current.props.style.left = window.pageXOffset;
-    // staticGrid.style.left = window.pageXOffset;
-    // console.log(window.pageXOffset);
   }, []);
 
   useEffect(() => {

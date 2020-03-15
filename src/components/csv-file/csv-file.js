@@ -16,7 +16,6 @@ function CsvFile({ personList }) {
     let csv = 'ID,NAME,AGE,MARRIED,STATE,COMPANY,JOB,SALARY\n';
     personList.forEach((item, index) => {
       const itemValuesList = Object.values(item);
-      console.log(itemValuesList);
       itemValuesList[0] = index;
       itemValuesList[5] = itemValuesList[5].replace(/,/, ' ');
       itemValuesList[6] = itemValuesList[6].replace(/,/, ' ');

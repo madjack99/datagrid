@@ -18,12 +18,10 @@ function Cell({
   checkRow,
   deleteRow,
 }) {
-  // console.log(personList);
   const user = Object.values(personList[rowIndex]);
   const info = user[columnIndex];
 
   const clazz = calculateClass(rowIndex);
-  // console.log(checkedRowsList);
   const handleChecked = e => {
     checkRow(e.target.value);
   };

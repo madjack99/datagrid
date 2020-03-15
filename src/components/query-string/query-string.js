@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 import { filterByTextAndState } from '../../actions';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginLeft: 10,
+    margin: 10,
   },
 }));
 
@@ -25,9 +25,9 @@ function QueryString({ filterByTextAndState }) {
   }, [location, filterByTextAndState]);
   return (
     <Link to={{ search: '?text=mrs&state=NH' }}>
-      <Typography color='primary' display='inline' className={classes.root}>
+      <Button color='primary' variant='contained' className={classes.root}>
         Click here to use query string for filtering
-      </Typography>
+      </Button>
     </Link>
   );
 }
