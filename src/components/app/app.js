@@ -8,6 +8,7 @@ import CsvFile from '../csv-file';
 import QueryString from '../query-string';
 import { loadSavedPersonList } from '../../actions';
 import InitialListLink from '../initial-list';
+import SortingExplanation from '../sorting-explanation';
 
 function App({ loadSavedPersonList }) {
   useEffect(() => {
@@ -19,6 +20,7 @@ function App({ loadSavedPersonList }) {
   return (
     <Router>
       <Grid />
+      <SortingExplanation />
       <QueryString />
       <InitialListLink />
       <FormCombined />
