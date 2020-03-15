@@ -9,6 +9,7 @@ import QueryString from '../query-string';
 import { loadSavedPersonList } from '../../actions';
 import InitialListLink from '../initial-list';
 import SortingExplanation from '../sorting-explanation';
+import SimpleTable from '../simple-table';
 
 function App({ loadSavedPersonList }) {
   useEffect(() => {
@@ -25,6 +26,7 @@ function App({ loadSavedPersonList }) {
       <InitialListLink />
       <FormCombined />
       <CsvFile />
+      <SimpleTable />
     </Router>
   );
 }
