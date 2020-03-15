@@ -14,10 +14,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const calculateClass = rowIndex => {
-  return rowIndex % 2 === 0 ? 'even row' : 'odd row';
-};
-
 function Cell({
   columnIndex,
   rowIndex,
@@ -31,6 +27,11 @@ function Cell({
 
   const user = Object.values(personList[rowIndex]);
   const info = user[columnIndex];
+
+  const calculateClass = rowIndex => {
+    if (checkedRowsList.includes(rowIndex)) return 'checked row';
+    return rowIndex % 2 === 0 ? 'even row' : 'odd row';
+  };
 
   const clazz = calculateClass(rowIndex);
   const handleChecked = e => {
@@ -46,7 +47,7 @@ function Cell({
       <Button
         className={classes.root}
         variant='contained'
-        color='secondary'
+        color='primary'
         onClick={handleDeleteRow}
       >
         Delete

@@ -34,3 +34,7 @@
 .id-column__input {
   margin-left: 5px;
 }
+
+.checked {
+  background-color: lightcoral;
+}
