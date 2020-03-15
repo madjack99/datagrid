@@ -74,7 +74,6 @@ export const getInitialList = () => {
 };
 
 export const switchToSimpleTable = state => {
-  console.log(state);
   return {
     type: 'SWITCH_TO_SIMPLE_TABLE',
     payload: state,

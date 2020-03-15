@@ -7,6 +7,7 @@ const initialState = {
   previouslySortedBy: null,
   multipleFieldsSort: [],
   checkedRowsList: [],
+  isSimpleTableOn: false,
 };
 
 const sortByCategory = (state, category) => {
@@ -183,6 +184,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         personList: initialState.personList,
+      };
+    case 'SWITCH_TO_SIMPLE_TABLE':
+      return {
+        ...state,
+        isSimpleTableOn: action.payload,
       };
     default:
       return state;

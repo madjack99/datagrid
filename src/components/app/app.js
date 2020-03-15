@@ -11,7 +11,7 @@ import InitialListLink from '../initial-list';
 import SortingExplanation from '../sorting-explanation';
 import SimpleTable from '../simple-table';
 
-function App({ loadSavedPersonList }) {
+function App({ loadSavedPersonList, isSimpleTableOn }) {
   useEffect(() => {
     const savedPersonList = JSON.parse(localStorage.getItem('savedPersonList'));
     if (savedPersonList) {
@@ -20,15 +20,19 @@ function App({ loadSavedPersonList }) {
   });
   return (
     <Router>
-      <Grid />
+      {isSimpleTableOn ? null : <Grid />}
       <SortingExplanation />
       <QueryString />
       <InitialListLink />
       <FormCombined />
       <CsvFile />
-      <SimpleTable />
+      {isSimpleTableOn ? <SimpleTable /> : null}
     </Router>
   );
 }
 
-export default connect(null, { loadSavedPersonList })(App);
+const mapStateToProps = ({ isSimpleTableOn }) => ({
+  isSimpleTableOn,
+});
+
+export default connect(mapStateToProps, { loadSavedPersonList })(App);
