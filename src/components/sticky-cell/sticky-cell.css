@@ -1,0 +1,24 @@
+.sticky-cell {
+  position: sticky !important;
+  top: 0px;
+  z-index: 100;
+  background: red;
+  width: 150px;
+  height: 50px;
+}
+
+.row {
+  border-bottom: 1px solid black;
+  padding: 10px 0 0 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.t-head {
+  background: navajowhite;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+}

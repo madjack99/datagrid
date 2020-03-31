@@ -1,0 +1,15 @@
+.sticky-container {
+  display: flex;
+}
+
+.two-grids-wrapper {
+  position: relative !important;
+}
+
+.fixed-column {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+
+  z-index: 100;
+}
